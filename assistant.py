@@ -14,7 +14,10 @@ def find_numbers(db):
     template = input('Enter the number (or first few digits):\n')
     
     if 'inf' in template:
-        return 'Invalid data'
+        return 'Nice try'
+
+    if template.find('+') != -1:
+        return 'Enter number without signs'
 
     try:
         template = int(template)
@@ -23,16 +26,26 @@ def find_numbers(db):
     except ValueError:
         return 'Invalid data'
 
-    return [num for num in db if str(num).startswith(str(template))]
+    c = 0
+    fit_numbers = []
 
+    for num in db:
+        if c < 10:
+            if str(num).startswith(str(template)):
+                fit_numbers.append(num)
+                c += 1
+        else:
+            break
 
-def startswith(string, template):
-    pass    
+    return fit_numbers
 
 
 def main():
     test_db = generate_random_numbers(100, '380')
-    print(find_numbers(test_db))
+    pprint(find_numbers(test_db))
+    print()
+
+
 
 if __name__ == "__main__":
     main()
