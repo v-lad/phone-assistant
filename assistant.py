@@ -24,7 +24,10 @@ def find_numbers(db):
         return 'Invalid data'
 
     return [num for num in db if str(num).startswith(str(template))]
-    
+
+
+def startswith(string, template):
+    pass    
 
 
 def main():
